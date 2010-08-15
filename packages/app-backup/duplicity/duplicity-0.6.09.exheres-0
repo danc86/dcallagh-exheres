@@ -1,0 +1,42 @@
+# Copyright 2009 Jan Meier
+# Copyright 2010 Sterling X. Winter <replica@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.3 has_bin=true ] launchpad [ branch="$(ever range 1-2)-series" ]
+
+SUMMARY="Encrypted bandwidth-efficient backup using the rsync algorithm"
+DESCRIPTION="
+Duplicity backs up directories by producing encrypted Tar-format volumes and
+uploading them to a remote or local file server. Because duplicity uses
+librsync, the incremental archives are space efficient and only record the
+parts of files that have changed since the last backup. Because duplicity uses
+GnuPG to encrypt and/or sign these archives, they will be safe from spying
+and/or modification by the server.
+
+This package also includes the rdiffdir utility, an extension of librsync's
+rdiff to directories. Rdiffdir can be used to produce signatures and deltas in
+GNU Tar format of directories as well as regular files.
+"
+HOMEPAGE="http://duplicity.nongnu.org/"
+
+LICENCES="GPL-2 LGPL-2.1 MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="s3 [[ description = [ Enable Amazon S3 remote storage ] ]]"
+
+DEPENDENCIES="
+    build+run:
+        app-crypt/gnupg
+        net-ftp/ncftp[>3.2.0]
+        net-libs/librsync[>=0.9.6]
+    run:
+        s3? ( dev-python/boto[>=0.9d] )
+"
+
+BUGS_TO="replica@exherbo.org"
+
+src_install() {
+    distutils_src_install
+    edo rm "${IMAGE}"/usr/share/doc/${PNVR}/{COPYING,tarfile-LICENSE}
+}
+
