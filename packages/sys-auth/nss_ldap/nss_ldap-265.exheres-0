@@ -1,0 +1,45 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+# Derived from nss_ldap-265.ebuild from Gentoo, which is:
+#   Copyright 1999-2010 Gentoo Foundation
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
+
+SUMMARY="Name Service Switch resolver for LDAP"
+DESCRIPTION="
+Resolves passwd and group entries from LDAP.
+Use in conjunction with pam_ldap.
+"
+HOMEPAGE="http://www.padl.com/OSS/nss_ldap.html"
+DOWNLOADS="http://www.padl.com/download/${PNV}.tar.gz"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="debug"
+
+DEPENDENCIES="
+    build:
+        dev-lang/perl [[ description = [ for ./vers_string script ] ]]
+    build+run:
+        net-directory/openldap[>=2.4.21]
+"
+
+BUGS_TO=""
+
+src_prepare() {
+    expatch -p1 "${FILES}"/nss_ldap-265-vers_string.patch
+    eautoreconf
+}
+
+src_configure() {
+    econf \
+        --hates=disable-silent-rules \
+        --hates=enable-fast-install \
+        --libdir=/${LIBDIR:-lib} \
+        # --disable-debugging does the opposite! grr
+        $(if optionq debug ; then echo --enable-debugging ; fi) \
+        --enable-paged-results \
+        --enable-rfc2307bis \
+        --with-ldap-lib=openldap
+}

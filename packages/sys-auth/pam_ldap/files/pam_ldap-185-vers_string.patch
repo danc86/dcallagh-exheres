@@ -1,0 +1,8 @@
+--- pam_ldap-185.orig/Makefile.am	2009-11-06 20:29:34.000000000 +1000
++++ pam_ldap-185/Makefile.am	2010-10-04 22:23:06.301562203 +1000
+@@ -44,4 +44,4 @@
+ 	@$(NORMAL_UNINSTALL)
+ 
+ vers.c: $(top_srcdir)/CVSVersionInfo.txt
+-	CVSVERSIONDIR=$(top_srcdir) vers_string -v
++	CVSVERSIONDIR=$(top_srcdir) $(top_srcdir)/vers_string -v

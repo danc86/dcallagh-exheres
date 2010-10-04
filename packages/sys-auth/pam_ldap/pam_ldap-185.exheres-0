@@ -1,0 +1,36 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
+
+SUMMARY="PAM module for authenticating against LDAP"
+DESCRIPTION="
+Provides a PAM module (pam_ldap.so) which can authenticate users with
+their credentials from an LDAP directory.
+Use in conjunction with nss_ldap.
+"
+HOMEPAGE="http://www.padl.com/OSS/pam_ldap.html"
+DOWNLOADS="http://www.padl.com/download/${PNV}.tar.gz"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="ssl"
+
+DEPENDENCIES="
+    build:
+        dev-lang/perl [[ description = [ for ./vers_string script ] ]]
+    build+run:
+        net-directory/openldap[>=2.4.21]
+"
+
+BUGS_TO=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --libdir=/${LIBDIR:-lib} --with-ldap-lib=openldap )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
+
+src_prepare() {
+    expatch -p1 "${FILES}"/pam_ldap-185-vers_string.patch
+    eautoreconf
+}
