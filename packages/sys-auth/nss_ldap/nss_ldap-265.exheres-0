@@ -20,24 +20,21 @@ MYOPTIONS="debug"
 
 DEPENDENCIES="
     build:
-        dev-lang/perl [[ description = [ for ./vers_string script ] ]]
+        dev-lang/perl:* [[ description = [ for ./vers_string script ] ]]
     build+run:
         net-directory/openldap[>=2.4.21]
 "
 
-BUGS_TO=""
+BUGS_TO="djc@djc.id.au"
 
-src_prepare() {
-    expatch -p1 "${FILES}"/nss_ldap-265-vers_string.patch
-    eautoreconf
-}
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/nss_ldap-265-vers_string.patch )
 
 src_configure() {
+    # can't pass --disable-debugging as that actually enables it
     econf \
         --hates=disable-silent-rules \
         --hates=enable-fast-install \
         --libdir=/${LIBDIR:-lib} \
-        # --disable-debugging does the opposite! grr
         $(if optionq debug ; then echo --enable-debugging ; fi) \
         --enable-paged-results \
         --enable-rfc2307bis \

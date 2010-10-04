@@ -19,18 +19,14 @@ MYOPTIONS="ssl"
 
 DEPENDENCIES="
     build:
-        dev-lang/perl [[ description = [ for ./vers_string script ] ]]
+        dev-lang/perl:* [[ description = [ for ./vers_string script ] ]]
     build+run:
         net-directory/openldap[>=2.4.21]
 "
 
-BUGS_TO=""
+BUGS_TO="djc@djc.id.au"
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/pam_ldap-185-vers_string.patch )
 DEFAULT_SRC_CONFIGURE_PARAMS=( --libdir=/${LIBDIR:-lib} --with-ldap-lib=openldap )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
 
-src_prepare() {
-    expatch -p1 "${FILES}"/pam_ldap-185-vers_string.patch
-    eautoreconf
-}
