@@ -1,0 +1,19 @@
+# Copyright 2010 <name>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gtk-icon-cache
+
+SUMMARY="Extra themes for GNOME"
+HOMEPAGE="http://librsvg.sourceforge.net/theme.php"
+
+LICENCES="GPL-2 CCPL-Attribution-ShareAlike-2.5"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+"
+
+BUGS_TO="djc@djc.id.au"
