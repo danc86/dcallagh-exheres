@@ -1,0 +1,22 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Panel applet to display xmonad log"
+HOMEPAGE="http://uhsure.com/xmonad-log-applet.html"
+DOWNLOADS=""
+
+SCM_REPOSITORY="http://git.uhsure.com/xmonad-log-applet.git/"
+require scm-git
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/dbus-glib:1[>=0.80]
+        gnome-desktop/gnome-panel[>=2.26.0]
+"
+
+BUGS_TO="djc@djc.id.au"
+
