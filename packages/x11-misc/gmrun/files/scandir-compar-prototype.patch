@@ -1,0 +1,17 @@
+From: Dan Callaghan <djc@djc.id.au>
+Upstream: TODO
+
+--- gmrun-0.9.2-orig/src/gtkcompletionline.cc	2003-11-16 20:55:07.000000000 +1000
++++ gmrun-0.9.2/src/gtkcompletionline.cc	2010-10-09 15:36:31.735708701 +1000
+@@ -376,10 +377,7 @@
+   return 0;
+ }
+ 
+-int my_alphasort(const void* va, const void* vb) {
+-  const struct dirent** a = (const struct dirent**)va;
+-  const struct dirent** b = (const struct dirent**)vb;
+-
++int my_alphasort(const struct dirent** a, const struct dirent** b) {
+   const char* s1 = (*a)->d_name;
+   const char* s2 = (*b)->d_name;
+ 
