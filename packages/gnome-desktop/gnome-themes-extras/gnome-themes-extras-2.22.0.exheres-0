@@ -1,4 +1,4 @@
-# Copyright 2010 <name>
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gtk-icon-cache

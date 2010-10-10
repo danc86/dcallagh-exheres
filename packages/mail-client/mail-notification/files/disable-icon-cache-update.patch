@@ -1,4 +1,4 @@
-From: Dan Callaghan <djc@djc.id.au>
+Source: Dan Callaghan <djc@djc.id.au>
 Reason: we handle icon cache updates outside of the build
 Upstream: not yet
 

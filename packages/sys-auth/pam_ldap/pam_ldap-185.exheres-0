@@ -19,7 +19,7 @@ MYOPTIONS="ssl"
 
 DEPENDENCIES="
     build:
-        dev-lang/perl:* [[ description = [ for ./vers_string script ] ]]
+        dev-lang/perl:* [[ note = [ for ./vers_string script ] ]]
     build+run:
         net-directory/openldap[>=2.4.21]
 "

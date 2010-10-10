@@ -1,7 +1,6 @@
-From: Dan Callaghan <djc@djc.id.au>
+Source: Dan Callaghan <djc@djc.id.au>
 Upstream: TODO
-
-use POSIX strncasecmp
+Reason: need to use POSIX strncasecmp
 
 Not sure what this is about, strncasecmp is not a member of std::char_traits in 
 any STL I can find...

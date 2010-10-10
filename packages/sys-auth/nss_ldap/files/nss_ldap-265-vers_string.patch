@@ -1,4 +1,6 @@
-Upstream: http://old.nabble.com/nss_ldap-265-td26230441.html#a26236814
+Source: Upstream http://old.nabble.com/nss_ldap-265-td26230441.html#a26236814
+Upstream: To be released in nss_ldap-266
+Reason: Only crazy people have . in $PATH
 
 --- nss_ldap-265.orig/Makefile.am	2009-11-06 20:28:08.000000000 +1000
 +++ nss_ldap-265/Makefile.am	2010-10-04 20:34:30.406862018 +1000

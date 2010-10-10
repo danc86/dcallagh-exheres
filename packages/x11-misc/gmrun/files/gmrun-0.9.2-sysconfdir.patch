@@ -1,8 +1,6 @@
-From: Łukasz Stelmach <stlman@poczta.fm>
-Source: http://bugs.gentoo.org/292856
+Source: Łukasz Stelmach <stlman@poczta.fm> from http://bugs.gentoo.org/292856
 Upstream: TODO
-
-keep config in /etc rather than /usr/share
+Reason: config belongs in /etc rather than /usr/share
 
 diff -ur gmrun-0.9.2.orig/config/Makefile.am gmrun-0.9.2/config/Makefile.am
 --- gmrun-0.9.2.orig/config/Makefile.am	2001-05-17 09:58:07.000000000 +0300
