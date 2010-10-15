@@ -1,0 +1,25 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.6 ]
+
+SUMMARY="Python bindings for MusicBrainz web services"
+DESCRIPTION="
+Python library for accessing web services of the MusicBrainz open music database.
+"
+HOMEPAGE="http://musicbrainz.org/doc/PythonMusicbrainz"
+DOWNLOADS="http://ftp.musicbrainz.org/pub/musicbrainz/${PN}/${PNV}.tar.gz"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        dev-lang/python[>=2.5]
+    run:
+        media-libs/libdiscid[>=0.1.0]
+"
+
+BUGS_TO="djc@djc.id.au"
+
