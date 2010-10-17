@@ -18,13 +18,10 @@ DEPENDENCIES="
 
 BUGS_TO="djc@djc.id.au"
 
+DEFAULT_SRC_CONFIGURE_PARAMS="--hates=docdir"
 DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}/missing-headers.patch"
     "${FILES}/scandir-compar-prototype.patch"
     "${FILES}/strncasecmp.patch"
     "${FILES}/gmrun-0.9.2-sysconfdir.patch"
 )
-
-src_configure() {
-    econf --hates=docdir
-}
