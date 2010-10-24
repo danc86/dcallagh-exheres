@@ -15,8 +15,6 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
-    build:
-        dev-lang/python[>=2.5]
     run:
         media-libs/libdiscid[>=0.1.0]
 "
