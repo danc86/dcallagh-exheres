@@ -1,0 +1,53 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 distutils [ python_dep=2.4 ]
+
+SUMMARY="Python GUI testing library, using AT-SPI"
+DESCRIPTION="
+dogtail is a GUI test tool and automation framework written in Python. It uses Accessibility 
+(a11y) technologies to communicate with desktop applications. dogtail scripts are written in 
+Python and executed like any other Python program.
+"
+HOMEPAGE="https://fedorahosted.org/dogtail/"
+DOWNLOADS="https://fedorahosted.org/released/${PN}/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    run:
+        gnome-platform/at-spi
+        gnome-bindings/gnome-python[gconf]
+"
+
+BUGS_TO="djc@djc.id.au"
+
+src_unpack() {
+    default
+    edo sed -i -e "s@share/doc/${PN}/@share/doc/${PNV}/@" "${WORK}/setup.py"
+}
+
+src_test() {
+    : # pylint is not a real test
+}
+
+src_install() {
+    distutils_src_install
+}
+
+pkg_preinst() {
+    gnome_exlib_save_icon_index_dirs
+    default
+}
+
+pkg_postinst() {
+    gnome_exlib_update_icon_cache
+    default
+}
+
+pkg_postrm() {
+    gnome_exlib_update_icon_cache
+    default
+}
