@@ -1,0 +1,42 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+# Partly derived from at-spi-1.30.1.ebuild from Gentoo, which is:
+#   Copyright 1999-2010 Gentoo Foundation
+
+require gnome-2 python [ python_dep=2.2 ]
+
+SUMMARY="Accessibility Toolkit Service Provider Interface"
+HOMEPAGE="http://developer.gnome.org/projects/gap/"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+RESTRICT="test" # needs an X display
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.9]
+    build+run:
+        dev-libs/atk[>=1.29.2]
+        x11-libs/gtk+[>=2.19.7]
+        dev-libs/popt
+        x11-libs/libX11
+        x11-libs/libXi
+    run:
+        gnome-bindings/gnome-python[bonobo]
+        gnome-bindings/pyorbit
+"
+
+BUGS_TO="djc@djc.id.au"
+
+src_unpack() {
+    default
+    # disable pyc compiling
+    edo mv "${WORK}/py-compile" "${WORK}/py-compile.orig"
+    edo ln -s $(type -P true) "${WORK}/py-compile"
+}
+
+src_install() {
+    default
+    python_bytecompile
+}
