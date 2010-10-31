@@ -1,0 +1,29 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require pypi distutils [ python_dep=2.5 ]
+
+SUMMARY="Utility library for Python WSGI web applications"
+DESCRIPTION="
+Werkzeug started as a simple collection of various utilities for WSGI applications and has become 
+one of the most advanced WSGI utility modules. It includes a powerful debugger, fully featured 
+request and response objects, HTTP utilities to handle entity tags, cache control headers, HTTP 
+dates, cookie handling, file uploads, a powerful URL routing system and a bunch of community 
+contributed addon modules.
+"
+HOMEPAGE="http://werkzeug.pocoo.org/"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    test:
+        dev-python/nose
+"
+
+BUGS_TO="djc@djc.id.au"
+
+src_test() {
+    edo make test
+}
