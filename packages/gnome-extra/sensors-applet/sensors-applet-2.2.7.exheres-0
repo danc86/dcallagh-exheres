@@ -1,0 +1,44 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 sourceforge [ suffix=tar.gz ]
+
+SUMMARY="GNOME panel applet for hardware sensors"
+DESCRIPTION="
+Provides a GNOME panel applet which can display hardware sensor data (e.g. temperatures, fan speeds)
+from various sources.
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    libnotify
+    udisks
+    sensors
+    nvidia [[ description = [ Use libXNVCtrl to support temperature sensors on nvidia GPUs ] ]]
+    "
+
+DEPENDENCIES="
+    build:
+    build+run:
+        gnome-desktop/gnome-panel
+        gnome-platform/libgnomeui:2
+        libnotify? ( x11-libs/libnotify )
+        udisks? ( sys-apps/dbus sys-apps/udisks )
+        sensors? ( sys-apps/lm_sensors )
+        nvidia? ( x11-libs/libXNVCtrl )
+"
+
+BUGS_TO="djc@djc.id.au"
+
+src_configure() {
+    econf \
+        --hates=disable-silent-rules \
+        --disable-scrollkeeper \
+        $(option_enable libnotify) \
+        $(option_enable udisks) \
+        $(option_with sensors libsensors) \
+        $(option_with nvidia)
+}
+
