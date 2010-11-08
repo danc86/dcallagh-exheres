@@ -1,0 +1,87 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 multilib
+
+SUMMARY="Dan Callaghan's fork of mail-notification, a tray icon showing unread mail"
+HOMEPAGE="http://github.com/danc86/mail-notification"
+DOWNLOADS=""
+
+SCM_REPOSITORY="git://github.com/danc86/mail-notification.git"
+require scm-git
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    ipv6
+    ssl
+    sasl
+    evolution [[ description = [ add support for checking Evolution mailboxes ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-lang/perl:*
+    build+run:
+        gnome-platform/libgnomeui[>=2.15.90]
+        gnome-desktop/gnome-keyring
+        sys-apps/dbus
+        x11-libs/libnotify[>=0.4.1]
+        net-utils/gmime:2.0[>=2.2.7]
+        ssl? ( dev-libs/openssl[>=0.9.6] )
+        sasl? ( net-libs/cyrus-sasl[>=2.0] )
+        evolution? ( mail-client/evolution[>=2.12] )
+"
+
+BUGS_TO="djc@djc.id.au"
+
+function optionyn() {
+    local option="$1" var="${2:-$1}"
+    if option "$option" ; then
+        echo "$var=yes"
+    else
+        echo "$var=no"
+    fi
+}
+
+src_configure() {
+    edo ./jb configure \
+        cc="${CC}" \
+        cflags="${CFLAGS}" \
+        cppflags="${CXXFLAGS}" \
+        ldflags="${LDFLAGS}" \
+        destdir="${IMAGE}" \
+        prefix=/usr \
+        bindir=/usr/bin \
+        libdir=/usr/$(get_libdir) \
+        libexecdir=/usr/libexec \
+        datadir=/usr/share \
+        sysconfdir=/etc \
+        localstatedir=/var/lib \
+        install-gconf-schemas=no \
+        update-gtk-icon-cache=no \
+        cc-dependency-tracking=no \
+        $(optionyn evolution) \
+        hotmail=no yahoo=no \
+        $(optionyn ipv6) \
+        $(optionyn ssl) \
+        $(optionyn sasl) \
+        regression-tests=no
+    # Tests call gnome_vfs_init which requires a writeable homedir
+    # https://bugzilla.gnome.org/show_bug.cgi?id=340234
+}
+
+src_test() {
+    :
+}
+
+src_compile() {
+    :
+}
+
+src_install() {
+    edo ./jb install
+}
+
