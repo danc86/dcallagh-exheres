@@ -14,5 +14,5 @@ PLATFORMS="~amd64 ~x86"
 BUGS_TO="djc@djc.id.au"
 
 src_test() {
-    python setup.py nosetests
+    edo python setup.py nosetests
 }

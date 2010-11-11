@@ -20,5 +20,5 @@ BUGS_TO="djc@djc.id.au"
 RESTRICT="test" # Tests are broken
 
 src_test() {
-    make tests
+    emake tests
 }
