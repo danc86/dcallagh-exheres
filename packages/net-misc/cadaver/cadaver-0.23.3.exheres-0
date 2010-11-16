@@ -1,0 +1,22 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Command-line WebDAV client"
+HOMEPAGE="http://www.webdav.org/cadaver/"
+DOWNLOADS="http://www.webdav.org/${PN}/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="readline"
+
+DEPENDENCIES="
+    build+run:
+        net-misc/neon
+        readline? ( sys-libs/readline )
+"
+
+BUGS_TO="djc@djc.id.au"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--with-neon" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "readline" )
