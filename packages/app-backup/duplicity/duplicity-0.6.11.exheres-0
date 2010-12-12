@@ -2,7 +2,7 @@
 # Copyright 2010 Sterling X. Winter <replica@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils [ python_dep=2.3 has_bin=true ] launchpad [ branch="$(ever range 1-2)-series" ]
+require distutils [ python_dep=2.4 has_bin=true ] launchpad [ branch="$(ever range 1-2)-series" ]
 
 SUMMARY="Encrypted bandwidth-efficient backup using the rsync algorithm"
 DESCRIPTION="
