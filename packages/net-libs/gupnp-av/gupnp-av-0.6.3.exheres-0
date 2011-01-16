@@ -1,0 +1,21 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="GUPnP A/V is a small utility library that aims to ease the handling and implementation of 
+UPnP A/V profiles."
+HOMEPAGE="http://gupnp.org/"
+DOWNLOADS="http://gupnp.org/sites/all/files/sources/${PNV}.tar.gz"
+
+LICENCES="LGPL-2"
+SLOT="1.0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        net-libs/gupnp:1.0[>=0.13]
+"
+
+BUGS_TO="djc@djc.id.au"
+

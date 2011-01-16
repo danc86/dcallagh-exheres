@@ -1,0 +1,50 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+# Partly derived from rygel-0.9.1.ebuild, which is:
+#   Copyright 1999-2011 Gentoo Foundation
+#   Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="UPnP AV (aka \"DLNA\") implementation"
+HOMEPAGE="http://live.gnome.org/Rygel"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="X tracker"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext
+        dev-util/intltool
+    build+run:
+        dev-libs/glib[>=2.26]
+        base/libgee:1.0[>=0.5.2]
+        media-libs/gstreamer[>=0.10.23]
+        media-plugins/gst-plugins-base[>=0.10.28]
+        gnome-desktop/libsoup:2.4[>=2.26.0]
+        dev-db/sqlite:3[>=3.5]
+        net-libs/gupnp[>=0.9.5]
+        net-libs/gupnp-av:1.0[>=0.5.9]
+        net-libs/gupnp-dlna:1.0[>=0.3.0]
+        tracker? ( app-pim/tracker )
+        X? ( x11-libs/gtk+:2[>=2.20] )
+"
+
+BUGS_TO="djc@djc.id.au"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    "--with-gtk=2.0"
+    "--enable-gst-launch-plugin"
+    "--enable-nls"
+    "--enable-media-export-plugin"
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "X ui" )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "tracker tracker-plugin" )
+
+src_install() {
+    gnome-2_src_install
+    edo find "$IMAGE" -name "*.la" -delete
+}
