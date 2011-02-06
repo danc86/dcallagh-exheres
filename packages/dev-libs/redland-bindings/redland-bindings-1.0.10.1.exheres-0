@@ -1,0 +1,51 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part on redland-bindings-1.0.10.1-r1.ebuild, which is:
+#   Copyright 1999-2010 Gentoo Foundation
+#   Distributed under the terms of the GNU General Public License v2
+
+require python [ python_dep=2.2 ] perl-module multilib
+
+SUMMARY="Language bindings for Redland"
+HOMEPAGE="http://librdf.org/bindings/"
+DOWNLOADS="http://download.librdf.org/source/${PNV}.tar.gz"
+
+LICENCES="Apache-2.0 GPL-2 LGPL-2.1"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+MYOPTIONS="perl python"
+
+DEPENDENCIES="
+    build:
+        dev-libs/redland[=1.0.10]
+        dev-lang/swig
+    test:
+        dev-libs/redland[=1.0.10][berkdb]
+"
+
+BUGS_TO="djc@djc.id.au"
+
+src_prepare() {
+    edo sed -i \
+        -e 's:python_prefix=.*:python_prefix=$(readlink -f $($PYTHON -c "import sys; print sys.prefix" 2>/dev/null)):' \
+        -e "s:lib/python:$(get_libdir)/python:" \
+        configure
+}
+
+src_configure() {
+    econf \
+        --disable-dependency-tracking \
+        --with-redland=system \
+        --with-python-ldflags="-shared -lrdf" \
+        $(option_with perl) \
+        $(option_with python) \
+        --without-php \
+        --without-ruby
+}
+
+src_install() {
+    emake -j1 DESTDIR="${IMAGE}" INSTALLDIRS=vendor install
+    emagicdocs
+    python_bytecompile
+    perl-module_src_install
+}
