@@ -1,0 +1,37 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.3 ] pypi
+
+SUMMARY="Python toolkit for stream-based generation of output for the web"
+HOMEPAGE="http://genshi.edgewall.org/"
+DOWNLOADS="ftp://ftp.edgewall.com/pub/genshi/${PNV}.tar.bz2"
+
+LICENCES="BSD"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="doc examples"
+
+BUGS_TO="djc@djc.id.au"
+
+RESTRICT="test" # they fail
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/markup-join-typeerror.patch"
+    "${FILES}/markup-join-iterable.patch"
+)
+
+src_test() {
+    edo python setup.py test
+}
+
+src_install() {
+    distutils_src_install
+    if option doc ; then
+        dodoc -r doc/*
+    fi
+    if option examples ; then
+        insinto /usr/share/doc/${PNV}
+        doins -r examples
+    fi
+}
