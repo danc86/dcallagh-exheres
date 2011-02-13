@@ -1,0 +1,27 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A front end to diff for comparing files on a word per word basis"
+DESCRIPTION="
+The program wdiff is a front end to diff for comparing files on a word per word basis. A word is 
+anything between whitespace. This is useful for comparing two texts in which a few words have been 
+changed and for which paragraphs have been refilled. It works by creating two temporary files, one 
+word per line, and then executes diff on these files. It collects the diff output and uses it to 
+produce a nicer display of word differences between the original files.
+"
+HOMEPAGE="http://www.gnu.org/software/${PN}/"
+DOWNLOADS="http://ftp.gnu.org/gnu/${PN}/${PNV}.tar.gz"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    run:
+        sys-apps/diffutils
+"
+
+BUGS_TO="djc@djc.id.au"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--enable-experimental" )
+
