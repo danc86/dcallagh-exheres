@@ -2,7 +2,7 @@
 # Copyright 2010 Sterling X. Winter <replica@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils [ python_dep=2.4 has_bin=true ] launchpad [ branch="$(ever range 1-2)-series" ]
+require distutils [ python_dep=2.3 has_bin=true ] launchpad [ branch="$(ever range 1-2)-series" ]
 
 SUMMARY="Encrypted bandwidth-efficient backup using the rsync algorithm"
 DESCRIPTION="
@@ -22,15 +22,16 @@ HOMEPAGE="http://duplicity.nongnu.org/"
 LICENCES="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="s3 [[ description = [ Enable Amazon S3 remote storage ] ]]"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        app-crypt/gnupg
-        net-ftp/ncftp[>3.2.0]
+        dev-python/boto[>=0.9d]
         net-libs/librsync[>=0.9.6]
     run:
-        s3? ( dev-python/boto[>=0.9d] )
+        app-crypt/gnupg[>=1.0]
+        net-ftp/lftp[>=3.7.15]
+        net-ftp/ncftp[>3.2.0]
 "
 
 BUGS_TO="replica@exherbo.org"
