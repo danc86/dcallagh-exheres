@@ -34,7 +34,7 @@ DEPENDENCIES="
         net-ftp/ncftp[>3.2.0]
 "
 
-BUGS_TO="replica@exherbo.org"
+BUGS_TO="djc@djc.id.au"
 
 src_install() {
     distutils_src_install
