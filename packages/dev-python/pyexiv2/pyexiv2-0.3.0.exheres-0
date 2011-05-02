@@ -1,0 +1,38 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+LAUNCHPAD_BRANCH=$(ever range 1-2).x
+LAUNCHPAD_PV=${PV%.0}
+require launchpad [ suffix=tar.bz2 branch=${LAUNCHPAD_BRANCH} pv=${LAUNCHPAD_PV} pnv=${PNV} ] scons python [ python_dep=2.6 ]
+
+SUMMARY="Python bindings for libexiv2, photo metadata library"
+DESCRIPTION="
+pyexiv2 is a Python binding to exiv2, the C++ library for manipulation of EXIF, IPTC and XMP image 
+metadata. It is a python module that allows your python scripts to read and write metadata (EXIF, 
+IPTC, XMP, thumbnails) embedded in image files (JPEG, TIFF, ...). It is designed as a high-level 
+interface to the functionalities offered by libexiv2. Using python's built-in data types and 
+standard modules, it provides easy manipulation of image metadata.
+"
+HOMEPAGE="http://tilloy.net/dev/pyexiv2/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        graphics/exiv2[>=0.19]
+        dev-libs/boost[>=1.38]
+"
+
+BUGS_TO="djc@djc.id.au"
+
+src_test() {
+    escons test
+}
+
+src_install() {
+    scons_src_install
+    emagicdocs
+    python_bytecompile
+}
