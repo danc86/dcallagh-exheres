@@ -1,7 +1,7 @@
 # Copyright 2011 Dan Callaghan <djc@djc.id.au>
 # Distributed under the terms of the GNU General Public License v2
 
-require pypi distutils [ python_dep=2.5 ]
+require pypi googlecode [ suffix=tar.gz ] distutils [ python_dep=2.4 ]
 
 SUMMARY="Python library for working with RDF"
 DESCRIPTION="
@@ -11,8 +11,6 @@ and RDFa. The library presents a Graph interface which can be backed by any one 
 implementations, including, memory, MySQL, Redland, SQLite, Sleepycat, ZODB and SQLObject.
 "
 HOMEPAGE="http://rdflib.net/"
-# pypi is probably more reliable
-#DOWNLOADS="http://rdflib.net/${PNV}.tar.gz"
 
 LICENCES="BSD-3"
 SLOT="0"
