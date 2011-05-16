@@ -1,0 +1,81 @@
+# Copyright 2009 Maxime Coste <frrrwww@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require toolchain-funcs
+
+SUMMARY="Cross-Platform GUI Library"
+DESCRIPTION="
+wxWidgets gives you a single, easy-to-use API for writing GUI applications on
+multiple platforms that still utilize the native platform's controls and
+utilities.
+"
+HOMEPAGE="http://www.wxwidgets.org/"
+DOWNLOADS="mirror://sourceforge/wxwindows/${PNV}.tar.bz2"
+
+LICENCES="LGPL-2"
+SLOT="2.9"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gstreamer joystick odbc sdl tiff"
+
+BUGS_TO="djc@djc.id.au"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/expat
+        dev-libs/glib:2
+        media-libs/jpeg
+        media-libs/libpng
+        x11-dri/mesa
+        x11-libs/gtk+:2
+        x11-libs/libSM
+        x11-libs/libXxf86vm
+        x11-libs/libXpm
+        x11-libs/pango [[ note = [ required for unicode support ] ]]
+        gstreamer? (
+            gnome-platform/GConf:2
+            media-libs/gstreamer:0.10
+            media-plugins/gst-plugins-base:0.10
+        )
+        odbc? ( dev-db/unixODBC )
+        sdl? ( media-libs/SDL )
+        tiff? ( media-libs/tiff )
+"
+
+src_configure() {
+    econf \
+        --hates=docdir \
+        --enable-compat26 \
+        --enable-controls \
+        --enable-expat=sys \
+        --enable-gui \
+        --enable-intl \
+        --enable-shared \
+        --enable-threads \
+        --enable-unicode \
+        --$(tc-is-cross-compiler && echo dis || echo en)able-precomp-headers \
+        --with-gtk=2 \
+        --with-libjpeg=sys \
+        --with-libpng=sys \
+        --with-libxpm=sys \
+        --with-opengl \
+        --with-regex=builtin \
+        --with-zlib=sys \
+        --without-gnomeprint \
+        --without-gnomevfs \
+        --without-motif \
+        --without-wine \
+        $(option_enable joystick) \
+        $(option_with gstreamer mediactrl) \
+        $(option_with odbc odbc sys) \
+        $(option_with sdl) \
+        $(option_with tiff libtiff sys)
+}
+
+src_install() {
+    default
+    dodoc -r docs/*
+    edo rmdir "${IMAGE}"/usr/share/locale/{*/{LC_MESSAGES,},}
+}
+
