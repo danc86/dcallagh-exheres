@@ -24,6 +24,7 @@ DEPENDENCIES="
     build:
         sys-devel/gettext
         dev-lang/perl:*
+        dev-util/gob2
     build+run:
         gnome-platform/libgnomeui[>=2.15.90]
         gnome-desktop/gnome-keyring
