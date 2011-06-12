@@ -1,0 +1,18 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require hackage
+
+SUMMARY="Haskell parser/serialiser for IEEE-754 floating-point values"
+
+LICENCES="MIT"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    $(haskell_lib_dependencies "
+        dev-haskell/binary[>=0.4]
+    ")
+"
+
+BUGS_TO="djc@djc.id.au"
+

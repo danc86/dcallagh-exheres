@@ -1,0 +1,18 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require hackage
+
+SUMMARY="Basic types for representing XML in Haskell"
+
+LICENCES="MIT"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    $(haskell_lib_dependencies "
+        dev-haskell/text
+    ")
+"
+
+BUGS_TO="djc@djc.id.au"
+
