@@ -1,0 +1,22 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require hackage
+
+SUMMARY="Monadic and object-oriented Haskell interfaces to DBus"
+
+LICENCES="GPL-3"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    $(haskell_lib_dependencies "
+        dev-haskell/containers[>=0.1]
+        dev-haskell/transformers[=0.2*]
+        dev-haskell/monads-tf[=0.1*]
+        dev-haskell/text[>=0.7]
+        dev-haskell/dbus-core[=0.8*]
+    ")
+"
+
+BUGS_TO="djc@djc.id.au"
+
