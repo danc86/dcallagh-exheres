@@ -1,0 +1,22 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require xfce [ module=panel-plugins ]
+
+SUMMARY="XFCE panel plugin to show the current temperature and weather condition"
+HOMEPAGE="http://goodies.xfce.org/projects/panel-plugins/${PN}"
+
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/gtk+:2[>=2.6]
+        xfce-base/libxfce4util[>=4.3.90.2]
+        xfce-base/libxfcegui4[>=4.3.90.2]
+        xfce-base/xfce4-panel[>=4.3.99.1]
+        dev-libs/libxml2[>=2.4]
+"
+
+BUGS_TO="djc@djc.id.au"
+
