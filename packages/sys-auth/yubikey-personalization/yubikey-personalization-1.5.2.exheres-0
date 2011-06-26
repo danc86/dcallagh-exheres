@@ -1,0 +1,23 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN=ykpers
+require googlecode [ project=$PN suffix=tar.gz ]
+
+SUMMARY="Library and tool for personalization of Yubico's YubiKey"
+
+LICENCES="BSD-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        sys-auth/libyubikey
+        dev-libs/libusb:1
+"
+
+BUGS_TO="djc@djc.id.au"
+
+WORK="$WORKBASE/$MY_PN-$PV"
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--with-backend=libusb-1.0" )
+

@@ -1,0 +1,13 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require googlecode [ suffix=tar.gz project=yubico-c ]
+
+SUMMARY="Low-level library for decrypting and parsing Yubikey one-time passwords"
+
+LICENCES="BSD-2"
+SLOT="0"
+PLATFORMS="~x86 ~amd64"
+
+BUGS_TO="djc@djc.id.au"
+
