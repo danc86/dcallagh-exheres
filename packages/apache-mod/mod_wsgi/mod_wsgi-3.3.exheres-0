@@ -12,7 +12,7 @@ PLATFORMS="~x86 ~amd64"
 DEPENDENCIES="
     build+run:
         www-servers/apache
-        dev-lang/python[>=2.3]
+        dev-lang/python:=[>=2.3&<3.0]
 "
 
 BUGS_TO="djc@djc.id.au"
