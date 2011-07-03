@@ -1,0 +1,58 @@
+diff -ur luaexpat-1.2.0.orig/config luaexpat-1.2.0/config
+--- luaexpat-1.2.0.orig/config	2011-06-04 00:17:04.000000000 +1000
++++ luaexpat-1.2.0/config	2011-07-03 21:58:23.449064365 +1000
+@@ -1,12 +1,8 @@
+ # Installation directories
+ # System's libraries directory (where binary libraries are installed)
+-LUA_LIBDIR= /usr/local/lib/lua/5.0
++LUA_LIBDIR= /usr/lib/lua/5.1
+ # System's lua directory (where Lua libraries are installed)
+-LUA_DIR= /usr/local/share/lua/5.0
++LUA_DIR= /usr/share/lua/5.1
+-# Lua includes directory
+-LUA_INC= /usr/local/include
+-# Expat includes directory
+-EXPAT_INC= /usr/local/include
+ 
+ # OS dependent
+ LIB_OPTION= -shared #for Linux
+@@ -17,8 +13,7 @@
+ # (according to Lua 5.1 definition:
+ # first version digit * 100 + second version digit
+ # e.g. Lua 5.0.2 => 500, Lua 5.1 => 501, Lua 5.1.1 => 501)
+-LUA_VERSION_NUM= 500
++LUA_VERSION_NUM= 501
+-COMPAT_DIR= ../compat/src
+ 
+ # Compilation parameters
+ CWARNS = -Wall -pedantic \
+@@ -31,6 +26,6 @@
+         -Wshadow \
+         -Wwrite-strings
+ 
+-CFLAGS = $(CWARNS) -ansi -O2 -I$(LUA_INC) \
+-   -I$(COMPAT_DIR) -I$(EXPAT_INC)
++CFLAGS ?= -O2
++CFLAGS += $(CWARNS) -ansi -fPIC $(shell pkg-config --cflags lua)
+-CC = gcc
++CC ?= gcc
+diff -ur luaexpat-1.2.0.orig/makefile luaexpat-1.2.0/makefile
+--- luaexpat-1.2.0.orig/makefile	2011-06-04 00:17:04.000000000 +1000
++++ luaexpat-1.2.0/makefile	2011-07-03 20:24:04.777166552 +1000
+@@ -18,11 +18,11 @@
+ 	$(CC) -c $(CFLAGS) -o $@ $(COMPAT_DIR)/compat-5.1.c
+ 
+ install:
+-	mkdir -p $(LUA_LIBDIR)
++	mkdir -p $(DESTDIR)$(LUA_LIBDIR)
+-	cp src/$(LIBNAME) $(LUA_LIBDIR)
++	cp src/$(LIBNAME) $(DESTDIR)$(LUA_LIBDIR)
+-	cd $(LUA_LIBDIR); ln -f -s $(LIBNAME) $T.so
++	cd $(DESTDIR)$(LUA_LIBDIR); ln -f -s $(LIBNAME) $T.so
+-	mkdir -p $(LUA_DIR)/$T
++	mkdir -p $(DESTDIR)$(LUA_DIR)/$T
+-	cp src/$T/lom.lua $(LUA_DIR)/$T
++	cp src/$T/lom.lua $(DESTDIR)$(LUA_DIR)/$T
+ 
+ clean:
+ 	rm -f src/$(LIBNAME) $(OBJS)

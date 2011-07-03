@@ -1,0 +1,25 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="SAX XML parser library for Lua, based on Expat"
+HOMEPAGE="http://matthewwild.co.uk/projects/${PN}/"
+DOWNLOADS="http://matthewwild.co.uk/projects/${PN}/${PNV}.tar.gz"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/lua[>=5.1]
+        dev-libs/expat
+"
+
+BUGS_TO="djc@djc.id.au"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-paths.patch" )
+
+src_configure() {
+    :
+}
+
