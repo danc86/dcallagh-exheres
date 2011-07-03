@@ -1,0 +1,20 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnu [ suffix=xz ]
+
+SUMMARY="Collection of autoconf macros"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+BUGS_TO="djc@djc.id.au"
+
+src_install() {
+    default
+
+    # package puts docs into here, but we install them separately
+    edo rm -r "${IMAGE}/usr/share/${PN}"
+}
+
