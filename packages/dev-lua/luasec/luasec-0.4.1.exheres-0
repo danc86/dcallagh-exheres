@@ -1,0 +1,32 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Lua bindings for OpenSSL"
+DESCRIPTION="
+LuaSec is a binding for OpenSSL library to provide TLS/SSL communication. It takes an already 
+established TCP connection and creates a secure session between the peers.
+"
+HOMEPAGE="http://www.inf.puc-rio.br/~brunoos/luasec/"
+DOWNLOADS="http://www.inf.puc-rio.br/~brunoos/luasec/download/${PNV}.tar.gz"
+UPSTREAM_CHANGELOG="http://www.inf.puc-rio.br/~brunoos/luasec/ChangeLog.txt"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/lua
+        dev-libs/openssl
+    run:
+        dev-lua/luasocket
+"
+
+BUGS_TO="djc@djc.id.au"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-paths.patch" )
+
+src_compile() {
+    emake linux
+}
+

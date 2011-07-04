@@ -1,0 +1,36 @@
+diff -ur luasec-0.4.1.orig/Makefile luasec-0.4.1/Makefile
+--- luasec-0.4.1.orig/Makefile	2011-03-02 13:09:20.000000000 +1000
++++ luasec-0.4.1/Makefile	2011-07-04 20:24:22.344395091 +1000
+@@ -1,11 +1,11 @@
+ # Inform the location to intall the modules
+-LUAPATH=/usr/local/share/lua/5.1
+-LUACPATH=/usr/local/lib/lua/5.1
++LUAPATH=/usr/share/lua/5.1
++LUACPATH=/usr/lib/lua/5.1
+ 
+ # Edit the lines below to inform new path, if necessary
+ #
+-#INCDIR=-I/usr/local/lua-5.1/include -I/usr/local/openssl-0.9.8/include
+-#LIBDIR=-L/usr/local/openssl-0.9.8/lib -R/usr/local/openssl-0.9.8/lib
++INCDIR=$(shell pkg-config --cflags-only-I lua openssl)
++LIBDIR=$(shell pkg-config --libs-only-L lua openssl)
+ 
+ # For Mac OS X: set the system version
+ MACOSX_VERSION=10.4
+diff -ur luasec-0.4.1.orig/src/Makefile luasec-0.4.1/src/Makefile
+--- luasec-0.4.1.orig/src/Makefile	2011-03-02 13:09:20.000000000 +1000
++++ luasec-0.4.1/src/Makefile	2011-07-04 20:27:13.144619139 +1000
+@@ -33,10 +33,9 @@
+ all:
+ 
+ install: $(CMOD) $(LMOD)
+-	mkdir -p $(LUAPATH)/ssl
+-	cp $(CMOD) $(LUACPATH)
+-	cp $(LMOD) $(LUAPATH)
+-	cp https.lua $(LUAPATH)/ssl
++	install -D -m0755 $(CMOD) $(DESTDIR)$(LUACPATH)/$(CMOD)
++	install -D -m0644 $(LMOD) $(DESTDIR)$(LUAPATH)/$(LMOD)
++	install -D -m0644 https.lua $(DESTDIR)$(LUAPATH)/ssl/https.lua
+ 
+ linux:
+ 	@$(MAKE) $(CMOD) MYCFLAGS="$(LNX_CFLAGS)" MYLDFLAGS="$(LNX_LDFLAGS)"
