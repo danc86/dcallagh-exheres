@@ -1,0 +1,34 @@
+diff -ur prosody-0.8.2.orig/prosody.cfg.lua.dist prosody-0.8.2/prosody.cfg.lua.dist
+--- prosody-0.8.2.orig/prosody.cfg.lua.dist	2011-06-13 07:21:40.000000000 +1000
++++ prosody-0.8.2/prosody.cfg.lua.dist	2011-07-04 21:25:52.959240265 +1000
+@@ -59,7 +59,7 @@
+ 		--"admin_telnet"; -- Opens telnet console interface on localhost port 5582
+ 
+ 	-- Other specific functionality
+-		--"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
++		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
+ 		--"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+ 		--"httpserver"; -- Serve static files from a directory over HTTP
+ 		--"groups"; -- Shared roster support
+@@ -69,6 +69,8 @@
+ 		--"motd"; -- Send a message to users when they log in
+ };
+ 
++daemonize = false; -- will refuse to daemonize under systemd
++
+ -- These modules are auto-loaded, should you
+ -- (for some mad reason) want to disable
+ -- them then uncomment them below
+@@ -123,9 +125,9 @@
+ -- Logging configuration
+ -- For advanced logging see http://prosody.im/doc/logging
+ log = {
+-	info = "prosody.log"; -- Change 'info' to 'debug' for verbose logging
+-	error = "prosody.err";
+-	-- "*syslog"; -- Uncomment this for logging to syslog
++	--info = "prosody.log"; -- Change 'info' to 'debug' for verbose logging
++	--error = "prosody.err";
++	"*syslog"; -- Uncomment this for logging to syslog
+ 	-- "*console"; -- Log to the console, useful for debugging with daemonize=false
+ }
+ 

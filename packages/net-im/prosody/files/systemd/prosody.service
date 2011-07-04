@@ -1,0 +1,12 @@
+[Unit]
+Description=Prosody XMPP server
+After=syslog.target
+
+[Service]
+Type=simple
+User=prosody
+Group=prosody
+ExecStart=/usr/bin/prosody
+
+[Install]
+WantedBy=multi-user.target

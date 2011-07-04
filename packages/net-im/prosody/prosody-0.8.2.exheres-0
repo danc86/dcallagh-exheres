@@ -1,0 +1,57 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require systemd-service
+
+SUMMARY="Flexible, lightweight XMPP server written in Lua"
+DESCRIPTION="
+Prosody is a modern flexible communications server for Jabber/XMPP written in Lua. It aims to be 
+easy to set up and configure, and light on resources. For developers it aims to be easy to extend 
+and give a flexible system on which to rapidly develop added functionality, or prototype new 
+protocols.
+"
+HOMEPAGE="http://prosody.im/"
+DOWNLOADS="http://prosody.im/downloads/source/${PNV}.tar.gz"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/lua[>=5.1]
+        dev-libs/openssl
+        net-dns/libidn
+        user/prosody
+        group/prosody
+    run:
+        dev-lua/luafilesystem[=1*]
+        dev-lua/luasocket[=2.0*]
+        dev-lua/luaexpat[=1.2*]
+    recommendation:
+        dev-lua/luasec[>=0.3.3] [[ description = [ This module is needed for SSL/TLS support. ] ]]
+    suggestion:
+        dev-lua/lua-zlib        [[ description = [ This module is used for compressing XMPP streams when mod_compression is enabled. ] ]]
+        dev-lua/luadbi[>=0.5]   [[ description = [ This module is used by mod_storage_sql for connecting to SQL databases. ] ]]
+"
+
+BUGS_TO="djc@djc.id.au"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-enable-posix.patch" )
+
+src_configure() {
+    # not real autoconf, so can't use econf
+    edo ./configure --prefix=/usr \
+            --sysconfdir=/etc/prosody \
+            --datadir=/var/lib/prosody \
+            --with-lua-include=/usr/include/lua5.1 \
+            --require-config
+}
+
+src_install() {
+    default
+    install_systemd_files
+    edo chown prosody:prosody "${IMAGE}/var/lib/prosody"
+    keepdir /var/lib/prosody
+}
+
