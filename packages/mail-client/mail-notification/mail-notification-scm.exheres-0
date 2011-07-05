@@ -56,7 +56,7 @@ src_configure() {
         destdir="${IMAGE}" \
         prefix=/usr \
         bindir=/usr/bin \
-        libdir=/usr/$(get_libdir) \
+        libdir=/usr/${LIBDIR} \
         libexecdir=/usr/libexec \
         datadir=/usr/share \
         sysconfdir=/etc \

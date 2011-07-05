@@ -28,7 +28,7 @@ BUGS_TO="djc@djc.id.au"
 src_prepare() {
     edo sed -i \
         -e 's:python_prefix=.*:python_prefix=$(readlink -f $($PYTHON -c "import sys; print sys.prefix" 2>/dev/null)):' \
-        -e "s:lib/python:$(get_libdir)/python:" \
+        -e "s:lib/python:${LIBDIR}/python:" \
         configure
 }
 

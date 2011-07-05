@@ -41,7 +41,7 @@ src_test() {
 }
 
 src_install() {
-    insinto "/usr/$(get_libdir)"
+    insinto "/usr/${LIBDIR}"
     doins src/libXNVCtrl/libXNVCtrl.a
     insinto /usr/include/NVCtrl
     doins src/libXNVCtrl/{NVCtrl,NVCtrlLib}.h
