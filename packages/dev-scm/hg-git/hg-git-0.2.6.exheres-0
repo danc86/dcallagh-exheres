@@ -13,12 +13,9 @@ PLATFORMS="~amd64 ~x86"
 DEPENDENCIES="
     build+run:
         dev-python/dulwich[>=0.6.0]
+    run:
+        dev-scm/mercurial[>=1.3&<1.9]
 "
 
 BUGS_TO="djc@djc.id.au"
 
-RESTRICT="test" # Tests are broken
-
-src_test() {
-    emake tests
-}
