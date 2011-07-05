@@ -1,0 +1,25 @@
+# Copyright 2010 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils [ python_dep=2.4 ]
+
+SUMMARY="hg-git plugin for Mercurial, allowing push to and pull from git"
+HOMEPAGE="http://hg-git.github.com/"
+DOWNLOADS=""
+
+SCM_REPOSITORY="git://github.com/schacon/hg-git.git"
+require scm-git
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        dev-python/dulwich[>=0.6.0]
+    run:
+        dev-scm/mercurial
+"
+
+BUGS_TO="djc@djc.id.au"
+
