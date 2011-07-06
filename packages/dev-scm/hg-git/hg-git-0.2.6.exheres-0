@@ -14,7 +14,7 @@ DEPENDENCIES="
     build+run:
         dev-python/dulwich[>=0.6.0]
     run:
-        dev-scm/mercurial[>=1.3&<1.9]
+        dev-scm/mercurial
 "
 
 BUGS_TO="djc@djc.id.au"
