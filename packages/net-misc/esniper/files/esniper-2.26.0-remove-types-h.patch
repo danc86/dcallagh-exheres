@@ -1,0 +1,15 @@
+Source: Dan Callaghan <djc@djc.id.au>
+Upstream: already fixed https://sourceforge.net/tracker/?func=detail&aid=3389276&group_id=45285&atid=442436
+Reason: curl dropped this header, it was empty and not needed
+
+diff -ur esniper-2-26-0/http.c esniper-2-26-0.fixed/http.c
+--- esniper-2-26-0/http.c       2011-08-10 05:05:59.000000000 +1000
++++ esniper-2-26-0.fixed/http.c 2011-08-15 14:27:23.841998416 +1000
+@@ -28,7 +28,6 @@
+ #include "esniper.h"
+ #include <ctype.h>
+ #include <curl/curl.h>
+-#include <curl/types.h>
+ #include <curl/easy.h>
+ #include <stdlib.h>
+ #include <string.h>
