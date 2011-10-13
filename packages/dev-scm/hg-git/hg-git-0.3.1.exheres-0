@@ -12,7 +12,7 @@ PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
     build+run:
-        dev-python/dulwich[>=0.6.0]
+        dev-python/dulwich[>=0.8.0]
     run:
         dev-scm/mercurial
 "
