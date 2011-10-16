@@ -19,6 +19,8 @@ DEPENDENCIES="
 
 BUGS_TO="djc@djc.id.au"
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-testcase-setup.patch" )
+
 src_test() {
-    edo python setup.py nosetests
+    edo python setup.py test
 }

@@ -1,0 +1,37 @@
+Source: Dan Callaghan <djc@djc.id.au>
+Upstream: https://bugs.launchpad.net/dulwich/+bug/875418
+Reason: fix failing tests
+
+diff -ur dulwich-0.8.0.orig/dulwich/tests/test_pack.py dulwich-0.8.0/dulwich/tests/test_pack.py
+--- dulwich-0.8.0.orig/dulwich/tests/test_pack.py	2011-08-07 22:43:22.000000000 +1000
++++ dulwich-0.8.0/dulwich/tests/test_pack.py	2011-10-16 11:37:28.210266511 +1000
+@@ -736,6 +736,7 @@
+ class DeltaChainIteratorTests(TestCase):
+ 
+     def setUp(self):
++        super(DeltaChainIteratorTests, self).setUp()
+         self.store = MemoryObjectStore()
+         self.fetched = set()
+ 
+diff -ur dulwich-0.8.0.orig/dulwich/tests/test_utils.py dulwich-0.8.0/dulwich/tests/test_utils.py
+--- dulwich-0.8.0.orig/dulwich/tests/test_utils.py	2011-08-07 22:43:22.000000000 +1000
++++ dulwich-0.8.0/dulwich/tests/test_utils.py	2011-10-16 11:36:40.514202100 +1000
+@@ -37,6 +37,7 @@
+ class BuildCommitGraphTest(TestCase):
+ 
+     def setUp(self):
++        super(BuildCommitGraphTest, self).setUp()
+         self.store = MemoryObjectStore()
+ 
+     def test_linear(self):
+diff -ur dulwich-0.8.0.orig/dulwich/tests/test_walk.py dulwich-0.8.0/dulwich/tests/test_walk.py
+--- dulwich-0.8.0.orig/dulwich/tests/test_walk.py	2011-08-07 22:43:22.000000000 +1000
++++ dulwich-0.8.0/dulwich/tests/test_walk.py	2011-10-16 11:33:14.202921149 +1000
+@@ -74,6 +74,7 @@
+ class WalkerTest(TestCase):
+ 
+     def setUp(self):
++        super(WalkerTest, self).setUp()
+         self.store = MemoryObjectStore()
+ 
+     def make_commits(self, commit_spec, **kwargs):
