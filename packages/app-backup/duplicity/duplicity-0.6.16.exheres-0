@@ -28,7 +28,7 @@ DEPENDENCIES="
     build+run:
         dev-python/boto[>=0.9d]
         net-libs/librsync[>=0.9.6]
-    run:
+    suggestion:
         app-crypt/gnupg[>=1.0]
         net-ftp/lftp[>=3.7.15]
         net-ftp/ncftp[>3.2.0]
