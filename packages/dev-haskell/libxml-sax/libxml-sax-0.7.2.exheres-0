@@ -17,7 +17,7 @@ DEPENDENCIES="
     $(haskell_lib_dependencies "
         dev-haskell/bytestring[=0.9*]
         dev-haskell/text[>=0.7]
-        dev-haskell/xml-types[>=0.1]
+        dev-haskell/xml-types[=0.3*]
     ")
 "
 
