@@ -1,0 +1,11 @@
+Source: Dan Callaghan <djc@djc.id.au>
+Reason: `runhaskell Setup.hs configure` fails to run ./configure
+Upstream: mail sent to maintainer 2012-01-06
+
+diff -ur DBus-0.4.orig/Setup.hs DBus-0.4/Setup.hs
+--- DBus-0.4.orig/Setup.hs	2012-01-06 18:00:20.565122304 +1000
++++ DBus-0.4/Setup.hs	2012-01-06 18:00:15.846096013 +1000
+@@ -1,2 +1,2 @@
+ import Distribution.Simple
+-main = defaultMain
++main = defaultMainWithHooks autoconfUserHooks

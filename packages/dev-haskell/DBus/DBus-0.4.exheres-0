@@ -1,0 +1,24 @@
+# Copyright 2011 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+require hackage
+
+SUMMARY="Haskell bindings for the D-Bus API"
+
+LICENCES="BSD-3"
+PLATFORMS="~x86 ~amd64"
+
+DEPENDENCIES="
+    sys-apps/dbus
+    $(haskell_lib_dependencies "
+        dev-haskell/bytestring
+    ")
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/${PNV}-setup-autoconf.patch"
+    "${FILES}/${PNV}-oldexception.patch"
+)
+
+BUGS_TO="djc@djc.id.au"
+

@@ -1,0 +1,16 @@
+Source: Dan Callaghan <djc@djc.id.au>
+Reason: fails to build on GHC 7
+Upstream: mail sent to maintainer 2012-01-06
+
+diff -ur DBus-0.4.orig/DBus/Internal.hsc DBus-0.4/DBus/Internal.hsc
+--- DBus-0.4.orig/DBus/Internal.hsc	2012-01-06 18:00:20.564122299 +1000
++++ DBus-0.4/DBus/Internal.hsc	2012-01-06 18:05:56.182462752 +1000
+@@ -9,7 +9,7 @@
+ 
+ module DBus.Internal where
+ 
+-import Control.Exception (throwDyn)
++import Control.OldException (throwDyn)
+ import Control.Monad (when)
+ import DBus (Error(..))
+ import Foreign
