@@ -13,14 +13,11 @@ PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
     test:
-        dev-python/nose
-        dev-python/testtools
+        || (
+            dev-lang/python[>=2.7]
+            dev-python/unittest2
+        )
 "
 
 BUGS_TO="djc@djc.id.au"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-testcase-setup.patch" )
-
-src_test() {
-    edo python setup.py test
-}
