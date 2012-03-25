@@ -1,0 +1,23 @@
+# Copyright 2012 Dan Callaghan <djc@djc.id.au>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Client program for the Tarsnap backup service"
+HOMEPAGE="https://www.tarsnap.com/download.html"
+DOWNLOADS="https://www.tarsnap.com/download/tarsnap-autoconf-${PV}.tgz"
+
+LICENCES="tarsnap"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/openssl
+        sys-libs/zlib
+        sys-fs/e2fsprogs
+"
+
+BUGS_TO="djc@djc.id.au"
+
+WORK="${WORKBASE}/tarsnap-autoconf-${PV}"
+
